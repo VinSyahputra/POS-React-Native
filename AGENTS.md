@@ -1,6 +1,6 @@
 # ReactNative — Expo App
 
-Single-screen Expo application (React Native 0.86 + React 19 + TypeScript strict) targeting iOS, Android, and web. Currently a "Hello World" starter with no navigation, auth, or backend.
+Single-screen Expo application (React Native 0.86 + React 19 + TypeScript strict) targeting iOS, Android, and web. "Hello World" starter wired to **Supabase** (BaaS) via a client in `src/lib/supabase.ts` — no screens use it yet.
 
 > **Read `README.md` for setup instructions and environment variables before making changes.**
 > (No `README.md` exists yet — until one is added, use [docs/agents/workflows.md](docs/agents/workflows.md) for setup, commands, and env-var rules.)
@@ -18,7 +18,9 @@ Read the exact versioned docs at https://docs.expo.dev/versions/v57.0.0/ before 
 ├── app.json            # Expo config (name, slug, icons, platform settings)
 ├── assets/             # App icons / adaptive icon layers / favicon
 ├── src/
-│   └── screens/        # Screen components (HomeScreen.tsx)
+│   ├── lib/          # Supabase client (supabase.ts)
+│   └── screens/      # Screen components (HomeScreen.tsx)
+├── .env.example      # Env var template (EXPO_PUBLIC_SUPABASE_*)
 ├── docs/agents/        # Deeper agent documentation (see TOC)
 ├── tsconfig.json       # extends expo/tsconfig.base, strict: true
 └── package.json        # Expo ~57.0.14 scripts: start / android / ios / web

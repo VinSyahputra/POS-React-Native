@@ -5,4 +5,4 @@ Never delete or rewrite existing entries.
 
 ## Entries
 
-_(none yet)_
+- 2026-08-19 — Default Expo `.gitignore` only ignores `.env*.local`, NOT plain `.env`. When introducing env vars, add an explicit `.env` entry before creating the file or credentials will show up as untracked and risk being committed.

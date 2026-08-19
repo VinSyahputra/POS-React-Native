@@ -26,9 +26,19 @@ iOS, Android, and Web (`react-native-web` installed; `npm run web`). Safe-area h
 
 **Not applicable — no roles or permissions.** Single-audience client app with no backend.
 
+## Backend / API Layer
+
+**Supabase (BaaS)** — client initialized in `src/lib/supabase.ts`:
+
+- `createClient` from `@supabase/supabase-js` with env vars `EXPO_PUBLIC_SUPABASE_URL` / `EXPO_PUBLIC_SUPABASE_ANON_KEY` (see `.env.example`); throws at load if missing.
+- Sessions persisted via `LargeSecureStore` (official Supabase pattern): values AES-CTR encrypted with `aes-js`, encryption key in `expo-secure-store`, ciphertext in `@react-native-async-storage/async-storage`. Needed because SecureStore alone is limited to 2048-byte values.
+- Auth flags: `autoRefreshToken`, `persistSession` on; `detectSessionInUrl` off (native app).
+- `expo-secure-store` config plugin is registered in `app.json` under `expo.plugins`.
+- **Database/RLS: not configured yet** — no tables or policies exist in the Supabase project from this repo's side. Every table created later MUST enable RLS since the anon key ships in the client bundle.
+
 ## Database & Query Patterns
 
-**None.** No SQLite/AsyncStorage/WatermelonDB and no remote API. All state is component-local `useState`.
+Supabase Postgres accessed only through the typed client (`supabase.from(...)`, `supabase.auth...`). No tables exist yet. When adding tables: create them + RLS policies in the Supabase dashboard/SQL editor, then mirror the row types in `src/types/`.
 
 ## Middleware Strategy & Ordering
 

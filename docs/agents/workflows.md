@@ -27,11 +27,18 @@ Requirements: Node ≥ 22.13 (Expo SDK 57 minimum). The Expo CLI ships with the 
 
 ## Environment Variables
 
-**None used.** No `.env` files and no `.env.example` exist. When introducing them:
+In use since the Supabase integration. Files: `.env` (gitignored) and `.env.example` (committed, keys only).
 
-- Client-visible values must be prefixed `EXPO_PUBLIC_` (Expo inlines them at build/serve time).
-- Secrets must never use `EXPO_PUBLIC_*`, never go in `app.json`, and never be committed — client bundles are public.
-- Commit a `.env.example` containing keys only (no values), and update this doc.
+| Variable | Purpose |
+|---|---|
+| `EXPO_PUBLIC_SUPABASE_URL` | Supabase project URL |
+| `EXPO_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon/publishable key |
+
+Rules:
+
+- Client-visible values must be prefixed `EXPO_PUBLIC_` (Expo inlines them at build/serve time). Values come from the Supabase Dashboard → **Connect → Expo React Native**.
+- Secrets must never use `EXPO_PUBLIC_*`, never go in `app.json`, and never be committed — client bundles are public. The anon key is safe to expose **only** with Row Level Security enabled on every table.
+- Adding a variable: put the key in `.env.example` (no value), set the real value in `.env`, and update the table above.
 
 ## Security Practices
 
