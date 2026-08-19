@@ -36,6 +36,15 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
+# tests
+coverage/
+
+# logs
+*.log
+
 # generated native folders
 /ios
 /android
+
+# tca/agent workspace
+tmp/
